@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    <style>
+        #container{
+            width: 1000px;
+            height: 1000px;
+            margin: 0 auto;
+        }
+        h3, #gold_box{
+            display:inline-block;
+        }
+        #total_box{
+            width: 200px;
+            height: 25px;
+            border: 1px solid gray;
+        }
+        #total_gold{
+            width: 200px;
+            height: 25px;
+        }
+        .buildings{
+            display: inline-block;
+            width: 242px;
+            height: 261px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .gold_button{
+            width: 114px;
+            height: 70px;
+        }
+        form{
+            padding:41px;
+        }
+        #activities_box{
+            border: 1px solid black;
+            width: 986px;
+            height: 300px;
+            overflow: auto;
+        }
+        .red {
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header_container">
+            <h3>Your Gold:</h3>
+            <div id="gold_box">
+                <div type="text" id=total_box>{{ request.session.total_gold  }}</div>
+            </div>
+            <a href='/reset'><button>RESET</button></a>
+            <div id="building_container">
+                <div class=buildings>
+                    <h2>Farm</h2>
+                    <h4>(earns 10-20 golds)</h4>
+                    <a href='/farm'><button>Find Gold!</button></a>
+                </div>
+                <div class=buildings>
+                    <h2>Cave</h2>
+                    <h4>(earns 5-10 golds)</h4>
+                    <a href='/cave'><button>Find Gold!</button></a>
+                </div>
+                <div class=buildings>
+                    <h2>House</h2>
+                    <h4>(earns 2-5 golds)</h4>
+                    <a href='/house'><button>Find Gold!</button></a>
+                </div>
+                <div class=buildings>
+                    <h2>Casino</h2>
+                    <h4>(earns/takes 0-50 golds)</h4>
+                    <a href='/casino'><button>Find Gold!</button></a>
+                </div>
+            </div>
+            <div>Activities:</div>
+                <div id=activities_box>
+                {% for activity in request.session.activities_list %}
+                    {{ activity| safe }}
+                {% endfor %}
+                </div>
+        </div>
+    </div>
+</body>
+</html>
